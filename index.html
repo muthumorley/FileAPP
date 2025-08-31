@@ -3,61 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MY FILE APP</title>
+  <title>My File App</title>
   <link rel="manifest" href="manifest.json">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-    header { background: #4CAF50; color: white; text-align: center; padding: 1rem; }
-    .section-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; padding: 1rem; }
-    .section { background: white; padding: 1rem; border-radius: 10px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); cursor: pointer; }
-    .upload-container { padding: 1rem; text-align: center; }
-    .document-list { padding: 1rem; }
-    .doc-item { background: white; margin: 0.5rem 0; padding: 0.75rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    button { margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; border-radius: 5px; background: #4CAF50; color: white; cursor: pointer; }
-    button:hover { background: #45a049; }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; }
+    header { background:#4CAF50; color:white; text-align:center; padding:1rem; }
+    .section-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem; padding:1rem; }
+    .section { background:white; padding:1rem; border-radius:10px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer; }
+    .upload-container { padding:1rem; text-align:center; }
+    .document-list { padding:1rem; }
+    .doc-item { background:white; margin:0.5rem 0; padding:0.75rem; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+    button { margin-top:0.5rem; padding:0.5rem 1rem; border:none; border-radius:5px; background:#4CAF50; color:white; cursor:pointer; }
+    button:hover { background:#45a049; }
   </style>
-  
 </head>
 <body>
 
-  <header>
-    <h1>📂 My Documents</h1>
-  </header>
+<header>
+  <h1>📂 My Documents</h1>
+</header>
 
-  <div class="section-container">
+<div class="section-container">
   <div class="section" onclick="selectSection('Study')">📚 Study</div>
-<div class="section" onclick="selectSection('Job')">💼 Job</div>
-<div class="section" onclick="selectSection('Travel')">🌍 Travel</div>
-<div class="section" onclick="selectSection('Finance')">💰 Finance</div>
-<div class="section" onclick="selectSection('Personal')">📑 Personal</div>
+  <div class="section" onclick="selectSection('Job')">💼 Job</div>
+  <div class="section" onclick="selectSection('Travel')">🌍 Travel</div>
+  <div class="section" onclick="selectSection('Finance')">💰 Finance</div>
+  <div class="section" onclick="selectSection('Personal')">📑 Personal</div>
+</div>
 
-  </div>
-
-  <div class="upload-container">
-    <h3>Upload a Document</h3>
-    <input type="file" id="fileInput" onchange="handleOnChange(event)" accept=".pdf,image/*">
-    <br>
-    <button onclick="handleUpload()">Upload</button>
-    <button onclick="handleSignIn()">Sign in with Google</button>
-  </div>
+<div class="upload-container">
+  <h3>Upload a Document</h3>
+  <input type="file" id="fileInput" accept=".pdf,image/*" multiple>
+  <br>
+  <button onclick="handleUpload()">Upload</button>
+  <button onclick="handleSignIn()">Sign in with Google</button>
+</div>
 
 <div class="document-list" id="documentList">
   <h3>Uploaded Files</h3>
   <div id="filesContainer"></div>
 </div>
 
-
-  <!-- Load JS at the bottom -->
- <!-- Google API client (must load first) -->
+<!-- Google API -->
 <script src="https://apis.google.com/js/api.js" async defer onload="gapiLoaded()"></script>
-
 <!-- Google Identity Services -->
 <script src="https://accounts.google.com/gsi/client" async defer onload="gisLoaded()"></script>
-
-<!-- Your app -->
+<!-- App JS -->
 <script src="fileApp.js"></script>
-
-
 
 </body>
 </html>
