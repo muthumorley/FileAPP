@@ -16,50 +16,48 @@
     button { margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; border-radius: 5px; background: #4CAF50; color: white; cursor: pointer; }
     button:hover { background: #45a049; }
   </style>
-  <script src="https://apis.google.com/js/api.js"></script>
-  <script src="fileApp.js"></script> <!-- JS file containing Google Drive integration -->
+  
 </head>
 <body>
+
   <header>
     <h1>📂 My Documents</h1>
   </header>
 
   <div class="section-container">
-    <div class="section" onclick="selectSection('Study')">📚 Study</div>
-    <div class="section" onclick="selectSection('Job')">💼 Job</div>
-    <div class="section" onclick="selectSection('Travel')">🌍 Travel</div>
-    <div class="section" onclick="selectSection('Finance')">💰 Finance</div>
-    <div class="section" onclick="selectSection('Personal')">📑 Personal</div>
+  <div class="section" onclick="selectSection('Study')">📚 Study</div>
+<div class="section" onclick="selectSection('Job')">💼 Job</div>
+<div class="section" onclick="selectSection('Travel')">🌍 Travel</div>
+<div class="section" onclick="selectSection('Finance')">💰 Finance</div>
+<div class="section" onclick="selectSection('Personal')">📑 Personal</div>
+
   </div>
 
   <div class="upload-container">
     <h3>Upload a Document</h3>
-    <input type="file" id="fileInput" accept=".pdf,image/*">
+    <input type="file" id="fileInput" onchange="handleOnChange(event)" accept=".pdf,image/*">
     <br>
-    <button onclick="handleFileUpload(document.getElementById('fileInput'), currentFolderId)">Upload</button>
-    <button onclick="signIn()">Sign in with Google</button>
+    <button onclick="handleUpload()">Upload</button>
+    <button onclick="handleSignIn()">Sign in with Google</button>
   </div>
 
-  <div class="document-list" id="docList">
-    <h3>Documents</h3>
-  </div>
+<div class="document-list" id="documentList">
+  <h3>Uploaded Files</h3>
+  <div id="filesContainer"></div>
+</div>
 
-  <script>
-    let currentFolderId = null;
 
-    function selectSection(sectionName) {
-      alert(`Selected section: ${sectionName}`);
-      // Later: map sectionName to Google Drive folder ID
-      // Example: currentFolderId = 'GOOGLE_DRIVE_FOLDER_ID_FOR_SECTION';
-      // After setting currentFolderId, list files:
-      if (currentFolderId) {
-        listFiles(currentFolderId);
-      }
-    }
+  <!-- Load JS at the bottom -->
+ <!-- Google API client (must load first) -->
+<script src="https://apis.google.com/js/api.js" async defer onload="gapiLoaded()"></script>
 
-    window.onload = () => {
-      loadGapi(); // Initialize Google API
-    };
-  </script>
+<!-- Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async defer onload="gisLoaded()"></script>
+
+<!-- Your app -->
+<script src="fileApp.js"></script>
+
+
+
 </body>
 </html>
